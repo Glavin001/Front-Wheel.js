@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Front-Wheel.js</title>
+
+    <!-- Bootstrap -->
+    <link href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+      <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+
+
+    <div class="container">
+
+        <h1>Welcome to Front-Wheel.js</h1>
+        <br/>
+
+        <p class="lead alert alert-info">
+        All of the examples below are with completed with only HTML <em>"code"</em> that is placed in your website.
+        <br/>
+        Additional Handlebars helpers can be added in JavaScript and used, such as the <strong>formatData</strong> helper in Example 2 below.
+        </p>
+
+        <br/><hr/><br/>
+
+        <h2>Example 1 <small>Basic</small></h2>
+
+        <h3>Code</h3>
+
+        <textarea class="form-control well" rows="13">
+<script class="front-wheel"
+type="text/x-handlebars-template"
+data-tag="div"
+data-model-type="json"
+data-model='{"messages":["Hello World!","test 1", "test2"]}'>
+    Messages:
+    <ul> 
+        {{#each messages}}
+            <li>{{this}}</li>
+        {{/each}}
+    </ul>
+</script>
+        </textarea>
+        
+        <h3>Output</h3>
+
+        <div class="well">
+
+        <script class="front-wheel"
+            type="text/x-handlebars-template"
+            data-tag="div"
+            data-model-type="json"
+            data-model='{"messages":["Hello World!","test 1", "test2"]}'>
+        Messages:
+        <ul> 
+        {{#each messages}}
+            <li>{{this}}</li>
+        {{/each}}
+        </ul>
+        </script>
+
+        </div>
+
+        <br/><hr/><br/>
+
+        <h2>Example 2 <small>Update Interval &amp; Function Models</small></h2>
+
+        <h3>Code</h3>
+
+        <textarea class="form-control well" rows="13">
+<script class="front-wheel"
+    type="text/x-handlebars-template"
+    data-tag="div"
+    data-model-type="function"
+    data-update-interval=1000
+    data-model='new Date()'>
+    <h4>Current Time:</h4> 
+    {{formatDate this "h:mm:ss a"}}
+    <br/>
+    <h4>Current Date:</h4> 
+    {{formatDate this "MMMM Do YYYY, h:mm:ss a"}}
+</script>
+        </textarea>
+
+        <h4>FormatDate Handlebars Helper <small>This helper was used to show how to expand Handlebars functionality</small></h4>
+
+        <textarea class="form-control well" rows="11">
+<script type="text/javascript">
+Handlebars.registerHelper("formatDate", function(datetime, format) {
+  if (moment) {
+    return moment(datetime).format(format);
+  }
+  else {
+    return datetime;
+  }
+});
+</script>
+        </textarea>
+
+        <h3>Output</h3>
+
+        <div class="well">
+
+        <script class="front-wheel"
+            type="text/x-handlebars-template"
+            data-tag="div"
+            data-model-type="function"
+            data-update-interval=1000
+            data-model='new Date()'>
+            <h4>Current Time:</h4> 
+            {{formatDate this "h:mm:ss a"}}
+            <br/>
+            <h4>Current Date:</h4> 
+            {{formatDate this "MMMM Do YYYY, h:mm:ss a"}}
+        </script>
+
+        </div>
+
+        <br/><hr/><br/>
+
+
+        <h2>Example 3 <small>Binding to Element's Events with <a href="https://api.jquery.com/one/" target="_blank">jQuery.one</a></small></h2>
+
+        <h3>Try It: Change one of the peoples' names</h3>
+
+<textarea id="ex3" class="form-control" rows="7">{
+  "people": [
+    "Yehuda Katz",
+    "Alan Johnson",
+    "Charles Jolley"
+  ]
+}</textarea>
+
+        <h3>Code</h3>
+
+        <textarea class="form-control well" rows="13">
+<script class="front-wheel"
+    type="text/x-handlebars-template"
+    data-tag="div"
+    data-model-type="function"
+    data-watch-el='{"#ex3": ["keyup"] }'
+    data-model='(function(){ return JSON.parse($("#ex3").val()); })()'>
+    <ul class="people_list">
+      {{#each people}}
+        <li>{{this}}</li>
+      {{/each}}
+    </ul>
+</script>
+        </textarea>
+
+        <h3>Output</h3>
+
+        <div class="well">
+
+        <script class="front-wheel"
+            type="text/x-handlebars-template"
+            data-tag="div"
+            data-model-type="function"
+            data-watch-el='{"#ex3": ["keyup"] }'
+            data-model='(function(){ return JSON.parse($("#ex3").val()); })()'>
+            <ul class="people_list">
+              {{#each people}}
+                <li>{{this}}</li>
+              {{/each}}
+            </ul>
+        </script>
+
+        </div>
+
+        <br/><hr/><br/>
+
+
+        <h2>Example 4 <small>Cooler Example Binding to Element's Events with <a href="https://api.jquery.com/one/" target="_blank">jQuery.one</a></small></h2>
+
+        <h3>Try It: Edit the <a href="https://github.com/coreyti/showdown" target="_blank">(Showndown) Markdown</a> below</h3>
+
+<textarea id="ex4" class="form-control" rows="15">
+# Front-Wheel.js
+
+## Handlebars.js
+
+> Handlebars provides the power necessary to let you build semantic templates effectively with no frustration.
+
+*Question:* Is this not pretty cool? All in the DOM with HTML, and rarely writing JavaScript.
+
+**Features:**
+
+- Powerful
+- Cool
+- Puts hair on your chest
+
+</textarea>
+
+        <h3>Code</h3>
+
+        <textarea class="form-control well" rows="10">
+<script class="front-wheel"
+    type="text/x-handlebars-template"
+    data-tag="div"
+    data-model-type="function"
+    data-watch-el='{"#ex4": ["keyup"] }'
+    data-model='(function(){ var c = new Showdown.converter(); return {"html": c.makeHtml($("#ex4").val()) }; })()'>
+    {{{html}}}
+</script>
+        </textarea>
+
+        <h3>Output</h3>
+
+        <div class="well">
+
+<script class="front-wheel"
+    type="text/x-handlebars-template"
+    data-tag="div"
+    data-model-type="function"
+    data-watch-el='{"#ex4": ["keyup"] }'
+    data-model='(function(){ var c = new Showdown.converter(); return {"html": c.makeHtml($("#ex4").val()) }; })()'>
+    {{{html}}}
+</script>
+
+        </div>
+
+    </div>
+
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.0/jquery.min.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/moment.js/2.5.1/moment.min.js"></script>
+    <script src="deps/handlebars-v1.3.0.js"></script>
+    <script src="http://softwaremaniacs.org/playground/showdown-highlight/showdown.js"></script>
+
+    <!-- Helpers -->
+    <script>
+        Handlebars.registerHelper("formatDate", function(datetime, format) {
+          if (moment) {
+            return moment(datetime).format(format);
+          }
+          else {
+            return datetime;
+          }
+        });
+    </script>
+
+    <!-- Library -->
+    <script src="lib/main.js"></script>
+
+  </body>
+</html>

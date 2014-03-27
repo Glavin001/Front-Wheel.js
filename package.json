@@ -1,0 +1,28 @@
+{
+  "name": "Front-Wheel.js",
+  "version": "0.0.0",
+  "description": "Front-end templating with Handlebarsjs.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/Glavin001/Front-Wheel.js.git"
+  },
+  "author": "",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Glavin001/Front-Wheel.js/issues"
+  },
+  "homepage": "https://github.com/Glavin001/Front-Wheel.js",
+  "devDependencies": {
+    "time-grunt": "^0.3.1",
+    "load-grunt-tasks": "^0.4.0",
+    "grunt": "^0.4.4",
+    "grunt-contrib-watch": "^0.6.1",
+    "jshint-stylish": "^0.1.5",
+    "grunt-contrib-jshint": "^0.9.2",
+    "grunt-contrib-connect": "^0.7.1"
+  }
+}
